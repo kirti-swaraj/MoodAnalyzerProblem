@@ -13,6 +13,7 @@ namespace MSTestMoodAnalyzer
     [TestClass]
     public class UnitTest1
     {
+        //UC1
         [TestMethod]
         public void SadMoodTest()
         {
@@ -36,12 +37,31 @@ namespace MSTestMoodAnalyzer
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
-        public void NullMessageTest()
+        public void GivenNullUsingCustomException()
+        {
+            try
+            {
+                //Arrange
+                MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+                //Act
+                string actual = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                //Assert
+                Assert.AreEqual("Mood should not be null", exception.Message);
+            }
+        }
+    
+        //UC2
+        [TestMethod]
+        public void GivenEmptyUsingCustomException()
         {
             //Arrange
-            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
-            string expected = "Happy Mood";
+            MoodAnalyser moodAnalyser = new MoodAnalyser("");
+            string expected = "Mood should not be empty";
             //Act
             string actual = moodAnalyser.AnalyseMood();
             //Assert
