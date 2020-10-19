@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace MoodAnalyzerProblem
 {
     public class MoodAnalyser
@@ -17,6 +16,10 @@ namespace MoodAnalyzerProblem
         public MoodAnalyser(string message)
         {
             this.message = message;
+        }
+        public MoodAnalyser()
+        {
+            Console.WriteLine("Default Constructor");
         }
         public string AnalyseMood()
         {
@@ -46,7 +49,6 @@ namespace MoodAnalyzerProblem
                 Console.WriteLine(exception.Message);
                 return exception.Message;
             }
-
         }
     }
 }
