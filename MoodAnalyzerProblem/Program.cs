@@ -26,6 +26,14 @@ namespace MoodAnalyzerProblem
             {
                 Console.WriteLine(exception.Message);
             }
+            try
+            {
+                Console.WriteLine(MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood"));
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
