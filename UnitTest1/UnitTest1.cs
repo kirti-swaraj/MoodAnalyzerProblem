@@ -177,6 +177,39 @@ namespace MSTestMoodAnalyzer
                 Assert.AreEqual("Exception: constructor not found", exception.Message);
             }
         }
+        /// <summary>
+        /// UC 6.1 : Given 'Happy' message when proper should return 'Happy Mood'.
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessage_InvokeAnalyseMoodMethod_ShouldReturnHappyMoodMessage()
+        {
+            //Arrange
+            string expected = "Happy Mood";
+            //Act
+            string actual = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood");
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// UC 6.2 : Given Improper method name must return mood analyser custom exception
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessage_WhenImproperMethod_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                //Act
+                object result = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMoodDifferent");
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                //Assert
+                Assert.AreEqual("Exception: method not found", exception.Message);
+            }
+        }
     }
 }
+    
+
         
