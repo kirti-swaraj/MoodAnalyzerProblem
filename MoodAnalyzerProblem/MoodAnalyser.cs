@@ -1,25 +1,19 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MoodAnalyzer.cs" company="Bridgelabz">
-//   Copyright © 2018 Company
-// </copyright>
-// <creator Name="Kirti Swaraj"/>
-// --------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 namespace MoodAnalyzerProblem
 {
     public class MoodAnalyser
     {
+        public MoodAnalyser()
+        {
+            Console.WriteLine("Default Constructor");
+        }
         private string message;
         public MoodAnalyser(string message)
         {
             this.message = message;
-        }
-        public MoodAnalyser()
-        {
-            Console.WriteLine("Default Constructor");
+            Console.WriteLine("Parameterized Constructor");
         }
         public string AnalyseMood()
         {
