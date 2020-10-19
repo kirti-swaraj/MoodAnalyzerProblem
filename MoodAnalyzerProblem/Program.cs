@@ -13,22 +13,17 @@ namespace MoodAnalyzerProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to mood analyzer portal!");
-            Console.WriteLine("Type how you feeling right now:" + null);
+            Console.WriteLine("Type how you feeling right now: ");
             string mood = Console.ReadLine();
             MoodAnalyser moodAnalyser = new MoodAnalyser(mood);
             moodAnalyser.AnalyseMood();
-            ReflectionClass.Test();
             try
             {
-                MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", null);
-            }
-            catch (MoodAnalyserCustomException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            try
-            {
-                Console.WriteLine(MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood"));
+                Console.WriteLine("UC 4-7:");
+                MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+                MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
+                MoodAnalyserReflector.InvokeAnalyseMood("Happy", "AnalyseMood");
+                Console.WriteLine(MoodAnalyserReflector.SetField("HAPPY", "message"));
             }
             catch (MoodAnalyserCustomException exception)
             {
