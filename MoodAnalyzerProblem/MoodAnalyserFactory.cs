@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-
 namespace MoodAnalyzerProblem
 {
     public class MoodAnalyserFactory
     {
         /// <summary>
-        /// UC 4 -  Added method CreateMoodAnalyserObject to create MoodAnalyser Object
+        /// UC4 & UC5 : Creates the mood analyser object with either default constructor or parameterized constructor according to message
         /// </summary>
-        /// <param name="className"></param>
-        /// <param name="constructor"></param>
+        /// <param name="className">Name of the class.</param>
+        /// <param name="constructorName">Name of the constructor.</param>
+        /// <param name="message">The message if it is null default constructor is called else parameterized one</param>
         /// <returns></returns>
-        public static object CreateMoodAnalyserObject(string className, string constructorName)
+        /// <exception cref="MoodAnalyserCustomException">
+        /// Exception: class not found
+        /// or  
+        /// Exception: constructor not found
+        /// </exception>
+        public static object CreateMoodAnalyserObject(string className, string constructorName, string message)
         {
             string pattern = @"." + constructorName + "$";
             var result = Regex.Match(className, pattern);
@@ -24,7 +29,15 @@ namespace MoodAnalyzerProblem
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     Type moodAnalyserType = assembly.GetType(className);
-                    var res = Activator.CreateInstance(moodAnalyserType);
+                    object res;
+                    if (message == null)
+                    {
+                        res = Activator.CreateInstance(moodAnalyserType, null);
+                    }
+                    else
+                    {
+                        res = Activator.CreateInstance(moodAnalyserType, message);
+                    }
                     return res;
                 }
                 catch (ArgumentNullException)
@@ -34,7 +47,7 @@ namespace MoodAnalyzerProblem
             }
             else
             {
-                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found in the class");
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found");
             }
         }
     }

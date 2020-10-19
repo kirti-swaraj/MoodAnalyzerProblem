@@ -6,7 +6,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-
 namespace MoodAnalyzerProblem
 {
     class Program
@@ -21,7 +20,7 @@ namespace MoodAnalyzerProblem
             ReflectionClass.Test();
             try
             {
-                MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+                MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", null);
             }
             catch (MoodAnalyserCustomException exception)
             {
