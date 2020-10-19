@@ -14,10 +14,10 @@ namespace MoodAnalyzerProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to mood analyzer portal!");
-            Console.WriteLine("Type how you feeling right now:");
+            Console.WriteLine("Type how you feeling right now:" + null);
             string mood = Console.ReadLine();
             MoodAnalyser moodAnalyser = new MoodAnalyser(mood);
-            Console.WriteLine("Currently you are in: " + moodAnalyser.AnalyseMood());
+            moodAnalyser.AnalyseMood();
         }
     }
 }
